@@ -171,6 +171,29 @@ Notes:
 - If you have already built GEM5, you should rebuild gem5 after install DRAMSim3
 - If simulating Xiangshan system, use DRAMSim3 with our costumized config
 
+Note: fix CMakelists.txt in DramSim3:
+
+```
+Line 1: cmake_minimum_required(VERSION 3.0.0)
+To: cmake_minimum_required(VERSION 4.0.0)
+
+Line 114: 
+add_custom_command(
+    TARGET dramsim3test POST_BUILD
+    COMMAND dramsim3test
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    DEPENDS dramsim3test dramsim3
+)
+
+To:
+
+add_custom_command(
+    TARGET dramsim3test POST_BUILD
+    COMMAND dramsim3test
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+```
+
 Use init.sh to clone and build DRAMSim3.
 
 ```shell

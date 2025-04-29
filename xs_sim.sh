@@ -9,7 +9,14 @@ export gem5_home='/home/sun/soc/GEM5-rvsoc'
 # For simple run sim
 # rvgem5 xiangshan.py --raw-cpt --generic-rv-cpt=./ready-to-run/coremark-2-iteration.bin
 # Current script
+# ./build/RISCV/gem5.opt ./configs/example/xiangshan.py \
+#     --mem-type=DDR4_2400_8x8 \
+#     --raw-cpt \
+#     --generic-rv-cpt=./configs/example/xs_workloads/ready-to-run/coremark-2-iteration.bin \
+#     --difftest-ref-so=./configs/example/xs_workloads/riscv64-nemu-interpreter-c1469286ca32-so
+    
 ./build/RISCV/gem5.opt ./configs/example/xiangshan.py \
+    --num-cpus=1\
     --mem-type=DDR4_2400_8x8 \
     --raw-cpt \
     --generic-rv-cpt=./configs/example/xs_workloads/ready-to-run/coremark-2-iteration.bin \

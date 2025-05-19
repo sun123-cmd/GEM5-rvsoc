@@ -150,6 +150,8 @@ AddOption('--pgo-prof', action='store_true',
           help='Enable pgo profiling generation')
 AddOption('--pgo-use', action='store', default=None,
           help='Use pgo profiling results')
+AddOption('--unit-test', action='store_true',
+          help='Enable unit test build')
 
 # Inject the built_tools directory into the python path.
 sys.path[1:1] = [ Dir('#build_tools').abspath ]
@@ -512,13 +514,6 @@ for variant_path in variant_paths:
         with gem5_scons.Configure(env) as conf:
             conf.CheckCxxFlag('-Wno-c99-designator')
             conf.CheckCxxFlag('-Wno-defaulted-function-deleted')
-            # Poor code quality workaround, should be fixed in the future.
-            conf.CheckCxxFlag('-Wno-error=unused-private-field')
-            conf.CheckCxxFlag('-Wno-error=infinite-recursion')
-            conf.CheckCxxFlag('-Wno-error=array-parameter')
-            conf.CheckCxxFlag('-Wno-error=uninitialized-const-reference')
-            conf.CheckCxxFlag('-Wno-error=vla-extension')
-            conf.CheckCxxFlag('-Wno-error=vla-cxx-extension')
 
         env.Append(TCMALLOC_CCFLAGS=['-fno-builtin'])
 
